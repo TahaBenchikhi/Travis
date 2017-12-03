@@ -4,13 +4,14 @@ node_js:
 services:
   - mysql
 before_install:
-  - mysql -u root --password='' < DB/cdp.sql
+  - mysql -e 'CREATE DATABASE cdp;'
+  - mysql -u root -p cdp  < setup.sql
 before_script:
   - "export DISPLAY=:99.0"
   - "sudo sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
   - npm install
-  - npm start; # start a Web server
+  - npm start & # start a Web server
   - cd ./Public
   - npm install
   - sleep 3 # give Web server some time to bind to sockets, etc
