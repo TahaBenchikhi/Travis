@@ -5,7 +5,7 @@ services:
   - mysql
 before_install:
   - mysql -e 'CREATE DATABASE cdp;'
-  - mysql -u root -p cdp  < setup.sql
+  - mysql -u root --password='' cdp  < setup.sql
 before_script:
   - "export DISPLAY=:99.0"
   - "sudo sh -e /etc/init.d/xvfb start"
